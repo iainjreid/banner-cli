@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IFS='%'
+IFS="%"
 
 declare -a A=(
   "    ##    "
@@ -664,10 +664,10 @@ done
 shift $((OPTIND -1))
 
 for (( i1=0; i1 < 9; i1++ )); do
-  line=""
+  line=" "
 
   if [[ $italic -eq 1 ]]; then
-    while [ ${#line} -lt $((8 - i1)) ]; do
+    while [ ${#line} -lt $((10 - i1)) ]; do
       line+=" "
     done
   fi
@@ -687,6 +687,13 @@ for (( i1=0; i1 < 9; i1++ )); do
     letter=$char[$i1]
 	  line+="${!letter}"
 	done
+
+  if [[ $italic -eq 1 ]]; then
+    foo=$((${#line} + i1))
+    while [ ${#line} -lt $foo ]; do
+      line+=" "
+    done
+  fi
 
   echo $line
 done
